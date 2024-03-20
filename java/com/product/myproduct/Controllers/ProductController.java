@@ -12,25 +12,25 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/getone")
-    public Product getProduct(){
-        return productService.getProduct();
+    @GetMapping("/getproducts/{id}")
+    public Product getProduct(@PathVariable("id")int id){
+        return productService.getProduct(id);
     }
-    @GetMapping("/getall")
+    @GetMapping("/getproducts")
     public List<Product> getProducts(){
         return productService.getProducts();
     }
     @PostMapping("/create")
-    public Product createProduct(){
-        return productService.createProduct();
+    public String createProduct(@RequestBody Product product){
+        return productService.createProduct(product);
     }
-    @PutMapping("update")
-    public String updateProduct(){
-        return productService.updateProduct();
+    @PutMapping("/updateproduct")
+    public String updateProduct(@RequestBody Product product){
+        return productService.updateProduct(product);
     }
-    @DeleteMapping("/delete")
-    public String deleteProduct(){
-        return productService.deleteProduct();
+    @DeleteMapping("/deleteproduct/{id}")
+    public String deleteProduct(@PathVariable("id")int id){
+        return productService.deleteProduct(id);
     }
 
 }

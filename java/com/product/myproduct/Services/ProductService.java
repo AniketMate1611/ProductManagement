@@ -12,10 +12,7 @@ import java.util.Scanner;
 public class ProductService {
     Scanner scanner = new Scanner(System.in);
     List<Product> productList = new ArrayList<Product>();
-    public Product getProduct(){
-        System.out.println("Enter id of product you want to fetch:");
-        System.out.print("ID: ");
-        int id = scanner.nextInt();
+    public Product getProduct(int id){
         if (!productList.isEmpty()) {
             for (Product product : productList) {
                 if (product.getId() == id) {
@@ -36,69 +33,33 @@ public class ProductService {
             return productList;
         }
     }
-    public Product createProduct(){
-        Product product = new Product();
-        System.out.println("Enter id, name, cost, and type of product:");
-        System.out.print("ID: ");
-        product.setId(scanner.nextInt());
-        System.out.print("Name: ");
-        product.setName(scanner.next());
-        System.out.print("Cost: ");
-        product.setCost(scanner.nextDouble());
-        System.out.print("Type: ");
-        product.setType(scanner.next());
+    public String createProduct(Product product){
         productList.add(product);
-        System.out.println("Product Added Successfully");
-
-        return product;
+        System.out.println(productList);
+        return "Product Added Successfully";
     }
-    public String updateProduct(){
-        System.out.println("Enter id of product you want to Update:");
-        System.out.print("ID: ");
-        int id = scanner.nextInt();
-
+    public String updateProduct(Product product){
         if (!productList.isEmpty()) {
-            Iterator<Product> iterator = productList.iterator();
-            while (iterator.hasNext()) {
-                Product product = iterator.next();
-                if (product.getId() == id) {
-                    System.out.print("Name: ");
-                    product.setName(scanner.next());
-                    System.out.print("Cost: ");
-                    product.setCost(scanner.nextDouble());
-                    System.out.print("Type: ");
-                    product.setType(scanner.next());
-                    System.out.println("Product Updated Successfully");
+            for (Product prod : productList) {
+                if (prod.getId() == product.getId()) {
+                    prod.setName(product.getName());
+                    prod.setCost(product.getCost());
+                    prod.setType(product.getType());
                     return "Product Updated Successfully";
                 }
             }
-            System.out.println("No Such Product Available");
-            return "No Such Product Available";
-        } else {
-            System.out.println("No Such Product Available");
-            return "No Products Available";
         }
-
+        return "No Such Products Available";
     }
-    public String deleteProduct(){
-        System.out.println("Enter id of product you want to Delete:");
-        System.out.print("ID: ");
-        int id = scanner.nextInt();
+    public String deleteProduct(int id){
         if (!productList.isEmpty()) {
-            Iterator<Product> iterator = productList.iterator();
-            while (iterator.hasNext()) {
-                Product product = iterator.next();
-                if (product.getId() == id) {
-                    iterator.remove();
-                    System.out.println("Product Deleted Successfully");
+            for (Product product : productList) {
+                if (product.getId() ==id) {
+                   productList.remove(product);
                     return "Product Deleted Successfully";
                 }
             }
-            System.out.println("No Such Product Available");
-            return "No Such Product Available";
-        } else {
-            System.out.println("No Such Product Available");
-            return "No Products Available";
         }
+        return "No Such Products Available";
     }
 }
