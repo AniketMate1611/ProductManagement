@@ -21,12 +21,12 @@ public class ProductController {
         return productService.getProducts();
     }
     @PostMapping("/create")
-    public String createProduct(@RequestBody Product product){
+    public Product createProduct(@RequestBody Product product){
         return productService.createProduct(product);
     }
-    @PutMapping("/updateproduct")
-    public String updateProduct(@RequestBody Product product){
-        return productService.updateProduct(product);
+    @PutMapping("/updateproduct/{id}")
+    public String updateProduct(@RequestBody Product product,@PathVariable("id")int id){
+        return productService.updateProduct(product,id);
     }
     @DeleteMapping("/deleteproduct/{id}")
     public String deleteProduct(@PathVariable("id")int id){
