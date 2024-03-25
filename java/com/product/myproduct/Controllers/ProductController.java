@@ -20,15 +20,15 @@ public class ProductController {
     public List<Product> getProducts(){
         return productService.getProducts();
     }
-    @PostMapping("/create")
-    public Product createProduct(@RequestBody Product product){
+    @PostMapping("/getproducts")
+    public String createProduct(@RequestBody Product product){
         return productService.createProduct(product);
     }
-    @PutMapping("/updateproduct/{id}")
+    @PutMapping("/getproducts/{id}")
     public String updateProduct(@RequestBody Product product,@PathVariable("id")int id){
         return productService.updateProduct(product,id);
     }
-    @DeleteMapping("/deleteproduct/{id}")
+    @DeleteMapping("/getproducts/{id}")
     public String deleteProduct(@PathVariable("id")int id){
         return productService.deleteProduct(id);
     }

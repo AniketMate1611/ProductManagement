@@ -30,8 +30,9 @@ public class ProductService {
     public List<Product> getProducts(){
        return productRepository.findAll();
     }
-    public Product createProduct(Product product){
-        return productRepository.save(product);
+    public String createProduct(Product product){
+     productRepository.save(product);
+     return "Product Added Successfully";
     }
     public String updateProduct(Product product, int id){
         Optional<Product> optional= productRepository.findById(id);
