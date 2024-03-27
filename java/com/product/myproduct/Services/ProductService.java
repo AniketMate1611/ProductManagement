@@ -34,18 +34,16 @@ public class ProductService {
      productRepository.save(product);
      return "Product Added Successfully";
     }
-    public String updateProduct(Product product, int id){
+    public Product updateProduct(Product product, int id){
         Optional<Product> optional= productRepository.findById(id);
         if(optional.isPresent()){
             Product newProduct = new Product();
             newProduct.setName(product.getName());
             newProduct.setCost(product.getCost());
             newProduct.setType(product.getType());
-            productRepository.deleteById(id);
-            productRepository.save(newProduct);
-            return "Product Updated Successfully";
+            return productRepository.save(newProduct);
         }
-        return "No Such Product Found";
+        return productRepository.save(product);
     }
     public String deleteProduct(int id) {
         productRepository.deleteById(id);
