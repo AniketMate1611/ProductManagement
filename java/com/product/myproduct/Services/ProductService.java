@@ -43,7 +43,9 @@ public class ProductService {
             newProduct.setType(product.getType());
             return productRepository.save(newProduct);
         }
-        return productRepository.save(product);
+        else{
+            return productRepository.save(product);
+        }
     }
     public String deleteProduct(int id) {
         productRepository.deleteById(id);
